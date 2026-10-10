@@ -1,0 +1,247 @@
+.block {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin: 2px 0;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+  gap: 6px;
+  max-width: 100%;
+  flex-wrap: nowrap;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.block.drop-target-before::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #f59e0b;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.95);
+  z-index: 20;
+}
+
+.block.drop-target-after::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #f59e0b;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.95);
+  z-index: 20;
+}
+
+.script-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 40px;
+  width: 100%;
+  gap: 2px;
+}
+
+.block:active {
+  cursor: grabbing;
+}
+
+.block input {
+  width: 46px;
+  border: 0;
+  border-radius: 12px;
+  padding: 2px 6px;
+  text-align: center;
+  color: #111;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.block input.wide {
+  width: 88px;
+  text-align: left;
+}
+
+.block-motion {
+  background: #4c97ff;
+}
+
+.block-looks {
+  background: #9966ff;
+  flex-wrap: wrap;
+}
+
+.block-control {
+  background: #ffab19;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 8px;
+  width: max-content;
+  min-width: 160px;
+}
+
+.block-control .block-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.block-nest {
+  min-height: 42px;
+  margin: 8px 0 0 16px;
+  padding: 4px 6px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  transition: background 0.15s ease, outline 0.15s ease;
+}
+
+.block-nest.drop-target-inside {
+  background: rgba(255, 255, 255, 0.25);
+  outline: 2px dashed #ffab19;
+}
+
+.stage {
+  width: 360px;
+  height: 260px;
+  background: #fff;
+  border: 1px solid #d0d6e0;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(#e6e9ef 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.sprite-wrap {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  margin-top: -40px;
+  cursor: pointer;
+}
+
+.speech {
+  position: absolute;
+  left: 72px;
+  top: -8px;
+  background: #fff;
+  border: 2px solid #1f2937;
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  min-width: 64px;
+  max-width: 140px;
+  z-index: 2;
+  white-space: pre-wrap;
+}
+
+.speech.say:after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  bottom: 10px;
+  border-width: 8px 8px 0 0;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+  filter: drop-shadow(-2px 2px 0 #1f2937);
+}
+
+.speech.think {
+  border-radius: 20px;
+}
+
+.sprites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.sprite-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
+}
+
+.sprite-card:hover {
+  border-color: #cbd5e1;
+}
+
+.sprite-card.active {
+  border-color: #855cd6;
+  background: #f3e8ff;
+}
+
+.play-btn {
+  border: 0;
+  background: #4cbf4c;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.play-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  background: #111827;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.drop-hint {
+  color: #9ca3af;
+  font-size: 13px;
+  padding: 24px 8px;
+}
+
+.delete-block {
+  margin-left: auto;
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 4px;
+}
